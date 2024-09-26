@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <header class="w-100 flex"></header>
+        <div class="header-catalogo">
+            <span class="w-100 flex-jc flex-ac bold white">🔥 Frete Grátis Hoje! 🔥</span>
+        </div>
+    </header>
+    <section class="container-catalogo flex-c w-100">
+        <div class="banner-container banner-catalogo">
+            <div class="banner-slide">
+                <img src="{% static 'image/GC10.png' %}" alt="Imagem 1" class="banner-image">
+                <img src="{% static 'image/GC9.png' %}" alt="Imagem 2" class="banner-image">
+            </div>
+            <script src="{% static 'js/app.js' %}"></script>
+        </div>
+        <div class="div-logo flex-c">
+            <img src="{% static 'image/GC.png' %}" alt="Logo da Empresa" class="logo-catalogo" width="150px" height="100px">
+            <span class="fantasia">Go Cardápios</span>
+        </div>
+        <div class="categoria flex-jc gap-3 font-25">
+            <div>
+                <a href="#entradas" class="category-card">Entradas</a>
+            </div>
+            <div>
+                <a href="#hamburgueres" class="category-card">Hambúrgueres</a>
+            </div>
+            <div>
+                <a href="#sobremesas" class="category-card">Sobremesas</a>
+            </div>
+            <div>
+                <a href="#bebidasGeladas" class="category-card">Bebidas geladas</a>
+            </div>
+            <div>
+                <a href="#bebidasQuentes" class="category-card">Bebidas quentes</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

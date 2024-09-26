@@ -1,0 +1,93 @@
+<!-- templates/outros_templates/exemplo.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <section id="container" class="w-100 flex-c plano-fundo">
+        <div class="flex-c flex-jb tela-login mt-1">
+            <div class="h-100 w-100 flex footer-login">
+                <div class="flex-ac ml-05 w-100">
+                    <svg class="icon icon-person cinza" width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM12 14c-4.42 0-8 3.58-8 8v1h16v-1c0-4.42-3.58-8-8-8z" fill="currentColor"/>
+                    </svg>
+                    <span class="white ml-05">Bem-vindo</span>
+                </div>
+            </div>
+            <div class="w-100 logo-login mt-1">
+                <img src="{% static 'image/GC.png' %}" alt="Logo da Empresa" class="logo" width="250px" height="200px">
+            </div>
+            <div class="flex-c m-1">
+                <span>CPF/CNPJ</span>
+                <input id="idusuario" type="text" name="usuario" required oninput="mascaraCpfCnpj(this)">
+                <div id="mensagem" style="color: red; font-size: 12px;"></div>
+                <span class="mt-05">Senha</span>
+                <input id="idsenha" type="password" name="senha" required>
+            </div>
+            <div class="w-100 footer-login-end">
+                <a href="{% url 'logincadastro' %}" class="button-painel text-a flex-ac flex-jc">Cadastre-se | F5</a>
+                <button id="login-button" class="button-login text-a flex-ac flex-jc">Painel | Entrar</button>
+            </div>
+        </div>
+        <div class="w-100 logo-login-2 flex-je">
+            <img src="{% static 'image/GC3.png' %}" alt="Logo da Empresa" class="logo" width="115px" height="80px">
+        </div>
+    </section>
+
+    <script>
+        function mascaraCpfCnpj(input) {
+            let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+            if (value.length <= 11) {
+                // Máscara para CPF
+                input.value = value.replace(/(\d{3})(\d)/, '$1.$2')
+                                .replace(/(\d{3})(\d)/, '$1.$2')
+                                .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            } else {
+                // Máscara para CNPJ
+                input.value = value.replace(/^(\d{2})(\d)/, '$1.$2')
+                                .replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3')
+                                .replace(/\.(\d{3})(\d)/, '.$1/$2')
+                                .replace(/(\d{4})(\d)/, '$1-$2');
+            }
+        }
+
+        document.getElementById('idusuario').addEventListener('input', function() {
+            const mensagem = document.getElementById('mensagem');
+            mensagem.textContent = ''; // Limpa a mensagem ao digitar
+            document.getElementById('idusuario').style.border = '1px solid red';
+        });
+
+        document.getElementById('idusuario').addEventListener('blur', function() {
+            const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+            const cnpjRegex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
+
+            const value = this.value;
+            const mensagem = document.getElementById('mensagem');
+
+            if (!cpfRegex.test(value) && !cnpjRegex.test(value)) {
+                mensagem.textContent = 'Por favor, insira um CPF ou CNPJ válido.';
+            } else {
+                mensagem.textContent = '';
+                document.getElementById('idusuario').style.border = '0.1px solid #c0a0a059';
+            }
+        });
+        // document.getElementById('login-button').addEventListener('click', function() {
+        //     const usuario = document.getElementById('idusuario').value;
+        //     const senha = document.getElementById('idsenha').value;
+
+        //     axios.post("", {
+        //         usuario: usuario,
+        //         senha: senha,
+        //         csrfmiddlewaretoken: '{{ csrf_token }}'  // Adicione o token CSRF aqui
+        //     })
+        //     .then(function (response) {
+        //         // Trate a resposta de sucesso aqui
+        //         console.log(response.data);
+        //     })
+        //     .catch(function (error) {
+        //         // Trate erros aqui
+        //         console.error(error);
+        //     });
+        // });
+    </script>
+{% endblock %}

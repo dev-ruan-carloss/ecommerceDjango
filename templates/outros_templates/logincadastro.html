@@ -1,0 +1,56 @@
+<!-- templates/outros_templates/exemplo.html -->
+{% extends 'base.html' %} {% load static %} {% block content %}
+    <section id="container" class="w-100 flex-c plano-fundo">
+        <div class="flex-c flex-jb tela-cadastro mt-1">
+            <div class="h-100 w-100 flex footer-login">
+                <div class="flex-ac ml-05 w-100">
+                    <svg
+                        class="icon icon-person cinza"
+                        width="25"
+                        height="25"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM12 14c-4.42 0-8 3.58-8 8v1h16v-1c0-4.42-3.58-8-8-8z"
+                            fill="currentColor"
+                        />
+                    </svg>
+                    <span class="white ml-05">Bem-vindo</span>
+                </div>
+            </div>
+            <div class="w-100 logo-login mt-1">
+                <img
+                    src="{% static 'image/GC.png' %}" 
+                    alt="Logo da Empresa"
+                    class="logo"
+                    width="250px"
+                    height="200px"
+                />
+            </div>
+            <div class="flex-c m-1 div-cadastro">
+                <span>Nome Completo</span>
+                <input id="nomeCompleto" type="text" required />
+                <span class="mt-05">CPF/CNPJ</span>
+                <input id="cpfcnpj" type="text" required />
+                <span class="mt-05">Senha</span>
+                <input id="senhaCadastro" type="password" required />
+                <span class="mt-05">Telefone</span>
+                <input id="telefone" type="text" required />
+                <div class="w-100 flex-jc gap-1 mt-1">
+                    <span class="mt-05">PAINEL ADMIN</span>
+                    <input id="admin" type="checkbox" />
+                </div>
+            </div>
+            <div class="w-100 footer-login-end">
+                <a href="{% url 'home'%}" class="button-painel flex-ac flex-jc">Voltar | ESC</a>
+                <a
+                    href="" 
+                    id="cadastrarLink"
+                    class="button-login flex-ac flex-jc"
+                    onclick="enviarDadosCadastro(event)">Cadastrar | Enter</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
