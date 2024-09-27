@@ -4,7 +4,7 @@ from django.views import View
 
 # Create your views here.
 def home_view(request):
-    return render(request, 'outros_templates/paineladm.html')
+    return render(request, 'outros_templates/logincadastro.html')
 
 class CadastroView(View):
      def get(self, request):
